@@ -35,6 +35,7 @@ paddel_horizaonal_center = paddel_length / HALF
 player = pygame.Rect(screen_width - 20, screen_height / 2 - 70, 10, 140)
 opponent = pygame.Rect(10, screen_height/2 -70, 10, 140)
 
+# Ball speed
 ball_speed_x = 7
 ball_speed_y = 7
 
@@ -44,15 +45,20 @@ while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
-            pygame.exit()
+            sys.exit()
 
     # Ball motion
     ball.x += ball_speed_x
     ball.y += ball_speed_y
 
+    # Tells the ball to switch directions when it hits the max window screen
     if ball.top <= 0 or ball.bottom >= screen_height:
         ball_speed_y *= -1
     if ball.left <= 0 or ball.right >= screen_width:
+        ball_speed_x *= -1
+    
+    # This stops the ball on the paddel instead of the window 
+    if ball.colliderect(player) or ball.colliderect(opponent):
         ball_speed_x *= -1
 
 
