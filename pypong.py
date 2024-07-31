@@ -4,6 +4,8 @@ import pygame
 import sys
 import random
 
+# adding in random commit to try out git
+
 # Constaints
 HALF = 2
 
